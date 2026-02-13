@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изпит: Светофари и Регулировчик</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        @media print { .no-print { display: none; } body { background: white; } }
+        .exam-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid transparent; background: white; }
+        .exam-card:hover { border-color: #f59e0b; transform: translateY(-2px); shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .correct { border-color: #10b981 !important; background-color: #f0fdf4; }
+        .wrong { border-color: #ef4444 !important; background-color: #fef2f2; }
+        .signal-icon { font-size: 2rem; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans p-4 md:p-10">
+
+    <div id="exam-app" class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-amber-500 to-orange-600 p-8 rounded-t-3xl text-white shadow-lg">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h1 class="text-3xl font-black uppercase tracking-tight">Светлинни Сигнали и Регулировчик</h1>
+                    <p class="opacity-90 font-medium">Модул: Регулиране на движението на кръстовища</p>
+                </div>
+                <div class="hidden md:block signal-icon">🚦👮‍♂️</div>
+            </div>
+            
+            <div class="flex flex-wrap gap-4 mt-8 no-print">
+                <div id="timer" class="bg-black/20 backdrop-blur-md px-6 py-2 rounded-full font-mono text-xl border border-white/30">Време: 15:00</div>
+                <div id="score-display" class="bg-white text-orange-600 px-6 py-2 rounded-full font-black text-xl shadow-inner italic">ОЦЕНКА: --</div>
+            </div>
+        </div>
+
+        <form id="signals-form" class="bg-white p-6 md:p-12 shadow-xl space-y-12 rounded-b-3xl">
+            <!-- Q1 -->
+            <div class="exam-card p-6 rounded-2xl shadow-sm border-gray-100">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">1</span>
+                    Когато регулировчикът е с вдигната вертикално нагоре ръка, това означава:
+                </h3>
+                <div class="grid gap-4">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq1" value="correct" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 group-hover:text-amber-900 font-medium">"Внимание, спри!" за всички участници (равностойно на жълт сигнал).</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq1" value="wrong" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 group-hover:text-amber-900 font-medium">"Премини бързо" за завиващите надясно.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="exam-card p-6 rounded-2xl shadow-sm border-gray-100">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">2</span>
+                    Регулировчикът е застанал с лице или гръб към вас. Ръцете му са спуснати до тялото. Какво трябва да направите?
+                </h3>
+                <div class="grid gap-4">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq2" value="wrong" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Можете да преминете направо или надясно.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq2" value="correct" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Спрете! Движението е забранено (равностойно на червен сигнал).</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="exam-card p-6 rounded-2xl shadow-sm border-gray-100">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">3</span>
+                    Когато светофарът има допълнителна секция със светеща зелена стрелка надясно, можете да преминете, ако:
+                </h3>
+                <div class="grid gap-4">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq3" value="correct" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Стрелката свети, но само в указаната от нея посока (надясно).</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq3" value="wrong" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Основният сигнал е зелен, независимо дали стрелката свети.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="exam-card p-6 rounded-2xl shadow-sm border-gray-100">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">4</span>
+                    Мигаща жълта светлина на светофара означава:
+                </h3>
+                <div class="grid gap-4">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq4" value="wrong" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Забрана за преминаване.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq4" value="correct" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Кръстовището е нерегулирано - преминете с повишено внимание, спазвайки знаците.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="exam-card p-6 rounded-2xl shadow-sm border-gray-100">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">5</span>
+                    Регулировчикът е с дясна ръка протегната напред. Вие се приближавате откъм гърба му. Вашето действие?
+                </h3>
+                <div class="grid gap-4">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq5" value="correct" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Спрете! Забранено е преминаването откъм гърба на регулировчика.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq5" value="wrong" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Преминете само направо.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="exam-card p-6 rounded-2xl shadow-sm border-gray-100">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">6</span>
+                    Кой сигнал на светофара забранява преминаването, но предупреждава, че предстои включване на зелен сигнал?
+                </h3>
+                <div class="grid gap-4">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq6" value="correct" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Едновременно светещи червена и жълта светлина.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq6" value="wrong" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Само мигаща жълта светлина.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="exam-card p-6 rounded-2xl shadow-sm border-gray-100">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">7</span>
+                    При противоречие между пътните знаци за предимство и сигналите на светофара, водачът трябва да спазва:
+                </h3>
+                <div class="grid gap-4">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq7" value="correct" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Сигналите на светофара.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq7" value="wrong" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Пътните знаци.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="exam-card p-6 rounded-2xl shadow-sm border-gray-100">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">8</span>
+                    Сигнал на регулировчика: Ляво рамо към вас, дясна ръка протегната напред. Можете да се движите:
+                </h3>
+                <div class="grid gap-4">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq8" value="correct" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Във всички посоки (направо, наляво, надясно и обратен завой).</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-amber-50 group transition">
+                        <input type="radio" name="sq8" value="wrong" class="w-5 h-5 accent-orange-500 mr-4">
+                        <span class="text-gray-700 font-medium">Само направо.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col md:flex-row gap-4 pt-10 no-print">
+                <button type="button" onclick="calculateResults()" class="flex-[2] bg-orange-500 hover:bg-orange-600 text-white font-black py-5 rounded-2xl shadow-lg transition active:scale-95 text-xl uppercase">Завърши Теста</button>
+                <button type="button" onclick="location.reload()" class="flex-1 bg-white border-2 border-gray-200 text-gray-600 font-bold py-5 rounded-2xl hover:bg-gray-50 transition">Нулирай</button>
+            </div>
+        </form>
+
+        <div id="final-modal" class="hidden p-12 bg-white rounded-3xl mt-10 shadow-2xl border-4 border-orange-500 text-center animate-bounce-short">
+            <h2 id="final-status" class="text-4xl font-black mb-4"></h2>
+            <p id="final-details" class="text-xl text-gray-600"></p>
+        </div>
+    </div>
+
+    <script>
+        let timerSeconds = 900;
+        const timerDisplay = document.getElementById('timer');
+
+        const interval = setInterval(() => {
+            if (timerSeconds <= 0) {
+                clearInterval(interval);
+                calculateResults();
+            } else {
+                timerSeconds--;
+                const m = Math.floor(timerSeconds / 60);
+                const s = timerSeconds % 60;
+                timerDisplay.innerText = `Време: ${m}:${s < 10 ? '0' : ''}${s}`;
+            }
+        }, 1000);
+
+        function calculateResults() {
+            clearInterval(interval);
+            const total = 8;
+            let score = 0;
+
+            for (let i = 1; i <= total; i++) {
+                const radios = document.getElementsByName('sq' + i);
+                radios.forEach(r => {
+                    const card = r.closest('.exam-card');
+                    if (r.checked) {
+                        if (r.value === 'correct') {
+                            score++;
+                            card.classList.add('correct');
+                        } else {
+                            card.classList.add('wrong');
+                        }
+                    }
+                    if (r.value === 'correct' && !r.checked) {
+                        card.style.borderRight = "6px solid #10b981";
+                    }
+                    r.disabled = true;
+                });
+            }
+
+            const percentage = (score / total) * 100;
+            const scoreDisplay = document.getElementById('score-display');
+            scoreDisplay.innerText = `ОЦЕНКА: ${score} / ${total}`;
+
+            const modal = document.getElementById('final-modal');
+            const status = document.getElementById('final-status');
+            const details = document.getElementById('final-details');
+            
+            modal.classList.remove('hidden');
+            if (percentage >= 90) {
+                status.innerText = "ОТЛИЧЕН 6.00";
+                status.className = "text-4xl font-black mb-4 text-emerald-600";
+                details.innerText = "Вие сте напълно готови за изпита пред ДАИ!";
+            } else if (percentage >= 75) {
+                status.innerText = "МНОГО ДОБЪР";
+                status.className = "text-4xl font-black mb-4 text-blue-600";
+                details.innerText = "Добър резултат, но прегледайте сигналите на регулировчика още веднъж.";
+            } else {
+                status.innerText = "НЕУСПЕШЕН";
+                status.className = "text-4xl font-black mb-4 text-red-600";
+                details.innerText = "Трябва да научите позициите на регулировчика - те са задължителни!";
+            }
+
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

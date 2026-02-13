@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изпит: Техническо състояние на МПС</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print { .no-print { display: none; } body { background: white; } }
+        .exam-card { transition: all 0.3s ease; border: 2px solid #f1f5f9; background: white; }
+        .exam-card:hover { border-color: #f59e0b; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .correct { border-color: #10b981 !important; background-color: #f0fdf4; }
+        .wrong { border-color: #ef4444 !important; background-color: #fef2f2; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans p-4 md:p-10">
+
+    <div id="exam-container" class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="bg-gradient-to-br from-orange-600 to-red-800 p-8 rounded-t-3xl text-white shadow-2xl relative overflow-hidden">
+            <div class="relative z-10">
+                <h1 class="text-3xl font-black uppercase tracking-widest">Техническо състояние на МПС</h1>
+                <p class="opacity-80 font-light mt-1 text-lg">Гуми, спирачки, светлини и сигнализация</p>
+            </div>
+            <div class="absolute top-0 right-0 p-6 opacity-20">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><path d="M22,12L20.3,10.5L20.4,8.3L18.3,7.8L17.2,5.9L15.1,6.4L13.5,4.7L12,5.3L10.5,4.7L8.9,6.4L6.8,5.8L5.7,7.7L3.6,8.2L3.7,10.4L2,11.9L2.6,14.1L1.2,16L2.9,17.7L2.8,19.9L4.9,20.4L6,22.3L8.1,21.8L9.7,23.5L11.2,22.9L12.7,23.5L14.3,21.8L16.4,22.3L17.5,20.4L19.6,19.9L19.5,17.7L21.2,16L19.8,14.1L22,12M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5Z"/></svg>
+            </div>
+            
+            <div class="flex flex-wrap gap-4 mt-8 no-print">
+                <div id="timer" class="bg-white/10 backdrop-blur-md px-6 py-2 rounded-xl font-mono text-xl border border-white/20">15:00</div>
+                <div id="score-card" class="bg-amber-500 px-6 py-2 rounded-xl font-black text-xl shadow-lg">РЕЗУЛТАТ: --</div>
+            </div>
+        </div>
+
+        <form id="tech-form" class="bg-white p-6 md:p-12 shadow-xl space-y-10 rounded-b-3xl">
+            <!-- Q1 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">1</span>
+                    Каква е минимално допустимата дълбочина на протектора за летни гуми на лек автомобил?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq1" value="wrong" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>1.0 мм</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq1" value="correct" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>1.6 мм</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq1" value="wrong" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>4.0 мм</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">2</span>
+                    Разрешено ли е на една ос на автомобила да бъдат монтирани гуми с различен протектор (шарка)?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq2" value="wrong" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Да, ако са с еднакъв размер.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq2" value="correct" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Не, гумите на една ос трябва да бъдат от един и същ тип и с еднакъв протектор.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">3</span>
+                    Кога една спирачна система се счита за неизправна според закона?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq3" value="correct" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Когато при задействане автомобилът тегли настрани или има изтичане на спирачна течност.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq3" value="wrong" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Само ако спирачният педал е твърд.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">4</span>
+                    Какъв цвят трябва да бъдат светлините, излъчвани от фаровете за заден ход?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq4" value="wrong" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Червен</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq4" value="correct" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Бял</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq4" value="wrong" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Жълт</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">5</span>
+                    Задължително ли е използването на зимни гуми (или гуми с протектор над 4мм) в България през зимата?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq5" value="correct" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Да, в периода от 15 ноември до 1 март.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq5" value="wrong" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Да, но само при наличие на сняг или лед.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">6</span>
+                    Разрешено ли е движението на МПС през нощта, ако не работи единият от фаровете за къси светлини?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq6" value="wrong" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Да, ако са включени светлините за мъгла.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq6" value="correct" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Не, движението е забранено до отстраняване на повредата.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">7</span>
+                    Какво трябва да бъде състоянието на стъклопочистващото устройство (чистачките)?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq7" value="correct" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Трябва да осигуряват почистване на стъклото и видимост на водача при дъжд/сняг.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq7" value="wrong" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Важно е само да се движат, без значение дали чистят добре.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg mr-4">8</span>
+                    При каква неизправност в кормилното управление е забранено движението на МПС?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq8" value="correct" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>При наличие на луфт (свободен ход) над допустимите норми или затруднено въртене.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="tq8" value="wrong" class="w-5 h-5 accent-amber-600 mr-4">
+                        <span>Само ако воланът е леко износен.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col md:flex-row gap-5 pt-8 no-print">
+                <button type="button" onclick="gradeTechTest()" class="flex-[3] bg-orange-600 hover:bg-orange-700 text-white font-black py-5 rounded-2xl shadow-xl transition-all active:scale-95 text-xl uppercase tracking-wider">Провери знанията</button>
+                <button type="button" onclick="location.reload()" class="flex-1 bg-white border-2 border-slate-200 text-slate-500 font-bold py-5 rounded-2xl hover:bg-slate-50">Нулирай</button>
+            </div>
+        </form>
+
+        <!-- Result Modal -->
+        <div id="tech-result-modal" class="hidden p-12 bg-white rounded-3xl mt-12 shadow-2xl border-b-8 border-orange-600 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h2 id="tech-result-title" class="text-4xl font-black mb-4"></h2>
+            <p id="tech-result-text" class="text-xl text-slate-600"></p>
+            <div class="mt-8 flex justify-center italic text-sm text-slate-400">
+                Техническата изправност спасява животи!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 900;
+        const timerDisplay = document.getElementById('timer');
+
+        const timerLoop = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerLoop);
+                gradeTechTest();
+            } else {
+                timeLeft--;
+                const m = Math.floor(timeLeft / 60);
+                const s = timeLeft % 60;
+                timerDisplay.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+            }
+        }, 1000);
+
+        function gradeTechTest() {
+            clearInterval(timerLoop);
+            const questionsCount = 8;
+            let correctCount = 0;
+
+            for (let i = 1; i <= questionsCount; i++) {
+                const inputs = document.getElementsByName('tq' + i);
+                inputs.forEach(input => {
+                    const card = input.closest('.exam-card');
+                    if (input.checked) {
+                        if (input.value === 'correct') {
+                            correctCount++;
+                            card.classList.add('correct');
+                        } else {
+                            card.classList.add('wrong');
+                        }
+                    }
+                    if (input.value === 'correct' && !input.checked) {
+                        card.style.borderRight = "12px solid #10b981";
+                    }
+                    input.disabled = true;
+                });
+            }
+
+            const scoreBox = document.getElementById('score-card');
+            scoreBox.innerText = `ТОЧКИ: ${correctCount} / ${questionsCount}`;
+
+            const modal = document.getElementById('tech-result-modal');
+            const title = document.getElementById('tech-result-title');
+            const text = document.getElementById('tech-result-text');
+            
+            modal.classList.remove('hidden');
+            const ratio = correctCount / questionsCount;
+
+            if (ratio === 1) {
+                title.innerText = "ПЕРФЕКТНО!";
+                title.className = "text-4xl font-black mb-4 text-emerald-600";
+                text.innerText = "Вие сте напълно готови да поддържате автомобила си в изправност.";
+            } else if (ratio >= 0.7) {
+                title.innerText = "МНОГО ДОБРЕ";
+                title.className = "text-4xl font-black mb-4 text-amber-600";
+                text.innerText = "Имате добри познания, но обърнете внимание на детайлите за гумите и спирачките.";
+            } else {
+                title.innerText = "СЛАБ РЕЗУЛТАТ";
+                title.className = "text-4xl font-black mb-4 text-red-600";
+                text.innerText = "Техническото състояние е критично за безопасността. Прочетете отново раздела.";
+            }
+
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

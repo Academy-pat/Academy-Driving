@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изпит: Спиране, Престой и Паркиране</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print { .no-print { display: none; } body { background: white; } }
+        .exam-card { transition: all 0.3s ease; border: 2px solid #f1f5f9; background: white; }
+        .exam-card:hover { border-color: #0ea5e9; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .correct { border-color: #10b981 !important; background-color: #f0fdf4; }
+        .wrong { border-color: #ef4444 !important; background-color: #fef2f2; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans p-4 md:p-10">
+
+    <div id="exam-container" class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="bg-gradient-to-br from-blue-700 to-indigo-900 p-8 rounded-t-3xl text-white shadow-2xl relative overflow-hidden">
+            <div class="relative z-10">
+                <h1 class="text-3xl font-black uppercase tracking-widest">Спиране, Престой и Паркиране</h1>
+                <p class="opacity-80 font-light mt-1 text-lg">Теоретичен изпит за подготовка на водачи</p>
+            </div>
+            <div class="absolute top-0 right-0 p-6 opacity-20">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor"><path d="M18.88 7H5.12C3.95 7 3 7.95 3 9.12V18c0 .55.45 1 1 1h1v2c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-2h8v2c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-2h1c.55 0 1-.45 1-1V9.12C21 7.95 20.05 7 18.88 7M7.5 16c-.83 0-1.5-.67-1.5-1.5S6.67 13 7.5 13s1.5.67 1.5 1.5S8.33 16 7.5 16m9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5M19 11H5V9h14v2z"/></svg>
+            </div>
+            
+            <div class="flex flex-wrap gap-4 mt-8 no-print">
+                <div id="timer" class="bg-white/10 backdrop-blur-md px-6 py-2 rounded-xl font-mono text-xl border border-white/20">15:00</div>
+                <div id="score-card" class="bg-blue-500 px-6 py-2 rounded-xl font-black text-xl shadow-lg">РЕЗУЛТАТ: --</div>
+            </div>
+        </div>
+
+        <form id="parking-form" class="bg-white p-6 md:p-12 shadow-xl space-y-10 rounded-b-3xl">
+            <!-- Q1 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg mr-4">1</span>
+                    Какво е определението за "Престой"?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq1" value="correct" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Спиране на МПС за ограничено време за слизане/качване на пътници или товарене/разтоварване.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq1" value="wrong" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Спиране на МПС поради повреда или задръстване.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg mr-4">2</span>
+                    На какво минимално разстояние от пешеходна пътека е разрешено паркирането?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq2" value="wrong" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Непосредствено преди нея, ако няма знак.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq2" value="correct" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>На разстояние не по-малко от 5 метра преди нея.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg mr-4">3</span>
+                    Разрешено ли е паркирането пред входове на жилищни сгради и гаражи?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq3" value="wrong" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Да, ако не се пречи на видимостта.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq3" value="correct" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Не, паркирането там е забранено, тъй като затруднява достъпа.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg mr-4">4</span>
+                    Когато знакът "Забранено паркирането" (В28) е поставен, разрешен ли е престоят?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq4" value="correct" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Да, престоят е разрешен.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq4" value="wrong" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Не, знакът забранява и престоя.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg mr-4">5</span>
+                    На какво разстояние от спирка на превозните средства от редовните линии е забранено паркирането?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq5" value="correct" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>По-малко от 50 метра.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq5" value="wrong" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>По-малко от 5 метра.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg mr-4">6</span>
+                    Разрешено ли е спирането за престой на втория ред (до друго спряло МПС) на платното за движение?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq6" value="wrong" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Да, за времето до 3 минути.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq6" value="correct" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Не, това е абсолютно забранено.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg mr-4">7</span>
+                    При престой на двупосочен път извън населено място, къде трябва да се постави автомобилът?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq7" value="correct" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>На банкета, извън платното за движение.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq7" value="wrong" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>На платното, плътно до десния бордюр.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="exam-card p-6 rounded-2xl">
+                <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-start">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg mr-4">8</span>
+                    Разрешено ли е паркирането на места, предназначени за хора с увреждания, ако не сте такова лице?
+                </h3>
+                <div class="grid gap-4 text-slate-700">
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq8" value="wrong" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Да, но само ако престоят е под 5 минути.</span>
+                    </label>
+                    <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
+                        <input type="radio" name="pq8" value="correct" class="w-5 h-5 accent-blue-600 mr-4">
+                        <span>Не, паркирането е строго забранено.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col md:flex-row gap-5 pt-8 no-print">
+                <button type="button" onclick="gradeParkingTest()" class="flex-[3] bg-indigo-600 hover:bg-indigo-700 text-white font-black py-5 rounded-2xl shadow-xl transition-all active:scale-95 text-xl uppercase tracking-wider">Приключи теста</button>
+                <button type="button" onclick="location.reload()" class="flex-1 bg-white border-2 border-slate-200 text-slate-500 font-bold py-5 rounded-2xl hover:bg-slate-50">Изчисти</button>
+            </div>
+        </form>
+
+        <!-- Final Feedback -->
+        <div id="result-modal" class="hidden p-12 bg-white rounded-3xl mt-12 shadow-2xl border-b-8 border-indigo-600 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <h2 id="result-title" class="text-4xl font-black mb-4"></h2>
+            <p id="result-text" class="text-xl text-slate-600"></p>
+            <div class="mt-8 flex justify-center">
+                <div class="w-24 h-1 bg-slate-200 rounded-full"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let timerVal = 900;
+        const timerEl = document.getElementById('timer');
+
+        const timerInterval = setInterval(() => {
+            if (timerVal <= 0) {
+                clearInterval(timerInterval);
+                gradeParkingTest();
+            } else {
+                timerVal--;
+                const min = Math.floor(timerVal / 60);
+                const sec = timerVal % 60;
+                timerEl.innerText = `${min}:${sec < 10 ? '0' : ''}${sec}`;
+            }
+        }, 1000);
+
+        function gradeParkingTest() {
+            clearInterval(timerInterval);
+            const totalQ = 8;
+            let correctCount = 0;
+
+            for (let i = 1; i <= totalQ; i++) {
+                const options = document.getElementsByName('pq' + i);
+                let selected = false;
+                options.forEach(opt => {
+                    const parent = opt.closest('.exam-card');
+                    if (opt.checked) {
+                        selected = true;
+                        if (opt.value === 'correct') {
+                            correctCount++;
+                            parent.classList.add('correct');
+                        } else {
+                            parent.classList.add('wrong');
+                        }
+                    }
+                    if (opt.value === 'correct' && !opt.checked) {
+                        parent.style.borderLeft = "10px solid #10b981";
+                    }
+                    opt.disabled = true;
+                });
+            }
+
+            const scoreDisplay = document.getElementById('score-card');
+            scoreDisplay.innerText = `РЕЗУЛТАТ: ${correctCount} / ${totalQ}`;
+
+            const modal = document.getElementById('result-modal');
+            const title = document.getElementById('result-title');
+            const text = document.getElementById('result-text');
+            
+            modal.classList.remove('hidden');
+            const percent = (correctCount / totalQ) * 100;
+
+            if (percent >= 90) {
+                title.innerText = "ОТЛИЧЕН РЕЗУЛТАТ!";
+                title.className = "text-4xl font-black mb-4 text-emerald-600";
+                text.innerText = "Вие познавате правилата за паркиране до съвършенство.";
+            } else if (percent >= 75) {
+                title.innerText = "ДОБЪР РЕЗУЛТАТ";
+                title.className = "text-4xl font-black mb-4 text-blue-600";
+                text.innerText = "Имате малки пропуски в разстоянията. Прегледайте грешните отговори.";
+            } else {
+                title.innerText = "НУЖДА ОЩЕ ПОДГОТОВКА";
+                title.className = "text-4xl font-black mb-4 text-red-600";
+                text.innerText = "Глобите за неправилно паркиране са високи! Прочетете закона отново.";
+            }
+
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

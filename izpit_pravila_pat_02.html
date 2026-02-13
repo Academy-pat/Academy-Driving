@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изпит: Позиция, Скорост и Дистанция</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        @media print { .no-print { display: none; } body { background: white; } }
+        .question-card { transition: all 0.2s; border: 1px solid #e5e7eb; }
+        .question-card:hover { border-color: #3b82f6; background-color: #f9fafb; }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen font-sans p-4 md:p-8">
+
+    <div id="exam-content" class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-slate-800 p-8 text-white">
+            <h1 class="text-3xl font-black uppercase tracking-tighter">Изпитен Протокол №2</h1>
+            <p class="text-slate-400 mt-1 uppercase text-sm font-bold">Тема: Позиция на пътя, Скорост и Дистанция</p>
+            
+            <div class="flex flex-wrap justify-between mt-8 gap-4 no-print">
+                <div id="timer" class="bg-red-500/20 border border-red-500 text-red-100 px-6 py-2 rounded-full font-mono text-lg italic">Време: 20:00</div>
+                <div id="score-display" class="bg-blue-500 text-white px-6 py-2 rounded-full font-black text-lg tracking-widest">РЕЗУЛТАТ: - / 20</div>
+            </div>
+        </div>
+
+        <form id="quiz-form" class="p-8 space-y-10">
+            <!-- Student Header -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-slate-100 pb-8">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Име на кандидат-водача</label>
+                    <input type="text" id="student-name" placeholder="Въведете имената тук..." class="w-full text-xl font-medium border-b-2 border-slate-200 py-2 focus:border-blue-600 outline-none transition-colors">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Дата на изпита</label>
+                    <input type="date" id="exam-date" class="w-full text-xl font-medium border-b-2 border-slate-200 py-2 focus:border-blue-600 outline-none transition-colors">
+                </div>
+            </div>
+
+            <!-- Questions Container -->
+            <div class="space-y-6">
+                <!-- Q1 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">1. Къде е длъжен да се движи водачът на МПС върху пътното платно?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-white"><input type="radio" name="q1" value="correct" class="mr-3"><span class="text-slate-600">Възможно най-вдясно по посока на движението.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-white"><input type="radio" name="q1" value="wrong" class="mr-3"><span class="text-slate-600">В средата на пътното платно за по-добра видимост.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">2. Каква е максимално допустимата скорост за Кат. В в населено място?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q2" value="wrong" class="mr-3"><span>40 км/ч.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q2" value="correct" class="mr-3"><span>50 км/ч.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">3. При движение по магистрала, водачът на лек автомобил е длъжен да ползва:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q3" value="correct" class="mr-3"><span>Най-дясната свободна лента.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q3" value="wrong" class="mr-3"><span>Лявата лента, ако се движи с максимална скорост.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">4. Какво е значението на понятието "безопасна дистанция"?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q4" value="correct" class="mr-3"><span>Разстояние, което позволява спиране без удар при внезапно спиране на предния.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q4" value="wrong" class="mr-3"><span>Разстояние от точно 5 метра.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">5. Максималната скорост за лек автомобил на автомагистрала в България е:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q5" value="correct" class="mr-3"><span>140 км/ч.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q5" value="wrong" class="mr-3"><span>120 км/ч.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">6. Каква е максималната скорост в "Жилищна зона"?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q6" value="correct" class="mr-3"><span>20 км/ч.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q6" value="wrong" class="mr-3"><span>30 км/ч.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">7. При мокра настилка, дистанцията до предния автомобил трябва да бъде:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q7" value="correct" class="mr-3"><span>Увеличена.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q7" value="wrong" class="mr-3"><span>Намалена, за да се виждат стоповете по-добре.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">8. Каква е скоростта извън населено място за Кат. В (път от републиканската мрежа)?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q8" value="correct" class="mr-3"><span>90 км/ч.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q8" value="wrong" class="mr-3"><span>80 км/ч.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">9. Каква странична дистанция трябва да осигури водачът при изпреварване на велосипедист?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q9" value="correct" class="mr-3"><span>Минимум 1.5 метра (безопасно странично разстояние).</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q9" value="wrong" class="mr-3"><span>Не повече от 50 см.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">10. Скоростта при теглене на повредено МПС с гъвкава връзка е до:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q10" value="correct" class="mr-3"><span>40 км/ч.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q10" value="wrong" class="mr-3"><span>50 км/ч.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">11. На път с три ленти в една посока (извън населено място), коя лента е за бавнодвижещи се?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q11" value="correct" class="mr-3"><span>Най-дясната.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q11" value="wrong" class="mr-3"><span>Средната.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">12. Понятието "съобразена скорост" означава водачът да може да спре:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q12" value="correct" class="mr-3"><span>Пред всяко предвидимо препятствие в зоната на видимост.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q12" value="wrong" class="mr-3"><span>Само ако види знак за опасност.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">13. При намалена видимост (мъгла под 50м), дистанцията трябва да бъде:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q13" value="correct" class="mr-3"><span>Увеличена значително.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q13" value="wrong" class="mr-3"><span>Същата като в слънчево време.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">14. Максималната скорост по "Скоростен път" за Кат. В е:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q14" value="correct" class="mr-3"><span>120 км/ч.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q14" value="wrong" class="mr-3"><span>100 км/ч.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">15. Къде се позиционира водачът при завой наляво по път с еднопосочно движение?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q15" value="correct" class="mr-3"><span>В най-лявата част на платното.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q15" value="wrong" class="mr-3"><span>В дясната част, за да направи голям радиус.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">16. Кой има предимство в Жилищна зона?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q16" value="correct" class="mr-3"><span>Пешеходците (могат да ползват пътя по цялата ширина).</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q16" value="wrong" class="mr-3"><span>Автомобилите, защото се движат с 20 км/ч.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">17. При навлизане в населено място (знак Д1), скоростта от 50 км/ч става задължителна:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q17" value="correct" class="mr-3"><span>Веднага след преминаване на знака.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q17" value="wrong" class="mr-3"><span>Когато се появят първите къщи.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">18. Път с "Разделителна ивица" между двете платна обикновено е:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q18" value="correct" class="mr-3"><span>Магистрала или Скоростен път.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q18" value="wrong" class="mr-3"><span>Черен път.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">19. Как влияе умората върху спирачния път?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q19" value="correct" class="mr-3"><span>Увеличава времето за реакция, а оттам и общия спирачен път.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q19" value="wrong" class="mr-3"><span>Не влияе.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">20. Разрешено ли е движението по трамвайни релси от автомобили?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q20" value="correct" class="mr-3"><span>Само ако релсите са на нивото на настилката и лентата е заета.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q20" value="wrong" class="mr-3"><span>Винаги, за да се изпревари задръстването.</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div id="action-buttons" class="flex flex-col md:flex-row gap-4 pt-10 no-print">
+                <button type="button" onclick="checkResults()" class="flex-[2] bg-emerald-600 hover:bg-emerald-700 text-white font-black py-4 rounded-xl shadow-lg transition transform active:scale-95">ПРОВЕРИ ОТГОВОРИТЕ</button>
+                <button type="button" id="pdf-btn" onclick="saveAsPDF()" class="hidden flex-1 bg-sky-600 hover:bg-sky-700 text-white font-bold py-4 rounded-xl shadow-lg transition">PDF ОТЧЕТ</button>
+                <button type="button" onclick="window.print()" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-4 rounded-xl shadow-md transition">ПЕЧАТ</button>
+            </div>
+        </form>
+
+        <div id="result-message" class="hidden p-10 text-center border-t border-slate-100 bg-slate-50"></div>
+    </div>
+
+    <script>
+        let timeLeft = 1200; 
+        const timerElement = document.getElementById('timer');
+
+        const timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                checkResults();
+                timerElement.innerHTML = "ВРЕМЕТО ИЗТЕЧЕ!";
+            } else {
+                timeLeft--;
+                const mins = Math.floor(timeLeft / 60);
+                const secs = timeLeft % 60;
+                timerElement.innerHTML = `Време: ${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+        }, 1000);
+
+        function checkResults() {
+            const questionsCount = 20;
+            let score = 0;
+
+            for (let i = 1; i <= questionsCount; i++) {
+                const radios = document.getElementsByName('q' + i);
+                for (let radio of radios) {
+                    if (radio.checked) {
+                        if (radio.value === 'correct') {
+                            score++;
+                            radio.parentElement.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-700');
+                        } else {
+                            radio.parentElement.classList.add('bg-red-50', 'border-red-500', 'text-red-700');
+                        }
+                    }
+                    radio.disabled = true;
+                }
+            }
+
+            document.getElementById('score-display').innerHTML = `РЕЗУЛТАТ: ${score} / ${questionsCount}`;
+            const msgBox = document.getElementById('result-message');
+            msgBox.classList.remove('hidden');
+            
+            if (score >= 18) {
+                msgBox.innerHTML = `<h2 class="text-3xl font-black text-emerald-600 mb-2">ОТЛИЧЕН УСПЕХ!</h2><p class="text-slate-600">Курсистът е подготвен за практическия изпит.</p>`;
+            } else if (score >= 15) {
+                msgBox.innerHTML = `<h2 class="text-3xl font-black text-blue-600 mb-2">УСПЕШЕН ИЗПИТ!</h2><p class="text-slate-600">Преминава, но се препоръчва преглед на грешките.</p>`;
+            } else {
+                msgBox.innerHTML = `<h2 class="text-3xl font-black text-red-600 mb-2">НЕУСПЕШЕН ИЗПИТ!</h2><p class="text-slate-600">Необходими са допълнителни часове по теория.</p>`;
+            }
+            
+            document.getElementById('pdf-btn').classList.remove('hidden');
+            clearInterval(timerInterval);
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        function saveAsPDF() {
+            const student = document.getElementById('student-name').value || "Bez_ime";
+            const opt = {
+                margin: 10,
+                filename: `Izpit_Pravila_${student}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            const noPrint = document.querySelectorAll('.no-print');
+            noPrint.forEach(el => el.style.display = 'none');
+            html2pdf().set(opt).from(document.getElementById('exam-content')).save().then(() => {
+                noPrint.forEach(el => el.style.display = '');
+            });
+        }
+    </script>
+</body>
+</html>

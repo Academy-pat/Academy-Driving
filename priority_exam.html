@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изпит: Предимство и Кръстовища</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        @media print { .no-print { display: none; } body { background: white; } }
+        .question-card { transition: all 0.2s; border: 1px solid #e2e8f0; }
+        .question-card:hover { border-color: #f59e0b; background-color: #fffbeb; }
+        input[type="radio"]:checked + span { color: #b45309; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-amber-50 min-h-screen font-sans p-4 md:p-8">
+
+    <div id="exam-content" class="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden border border-amber-100">
+        <!-- Header -->
+        <div class="bg-amber-600 p-8 text-white">
+            <h1 class="text-3xl font-black uppercase tracking-tighter">Изпитен Протокол №4</h1>
+            <p class="text-amber-100 mt-1 uppercase text-sm font-bold tracking-widest">Тема: Предимство, Кръстовища и Специален режим</p>
+            
+            <div class="flex flex-wrap justify-between mt-8 gap-4 no-print">
+                <div id="timer" class="bg-white/20 border border-white/40 text-white px-6 py-2 rounded-full font-mono text-lg italic">Време: 20:00</div>
+                <div id="score-display" class="bg-amber-900 text-white px-6 py-2 rounded-full font-black text-lg tracking-widest shadow-inner">РЕЗУЛТАТ: - / 20</div>
+            </div>
+        </div>
+
+        <form id="quiz-form" class="p-8 space-y-10">
+            <!-- Student Data -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-amber-50 pb-8">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black text-amber-500 uppercase tracking-widest">Име на кандидат-водача</label>
+                    <input type="text" id="student-name" placeholder="Три имена..." class="w-full text-xl font-medium border-b-2 border-amber-100 py-2 focus:border-amber-600 outline-none transition-colors bg-transparent">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black text-amber-500 uppercase tracking-widest">Дата</label>
+                    <input type="date" id="exam-date" class="w-full text-xl font-medium border-b-2 border-amber-100 py-2 focus:border-amber-600 outline-none transition-colors bg-transparent">
+                </div>
+            </div>
+
+            <!-- Questions -->
+            <div class="space-y-6">
+                <!-- Q1 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">1. На равнозначно кръстовище предимство има:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-white"><input type="radio" name="q1" value="correct" class="mr-3 w-4 h-4 accent-amber-600"><span>Дясностоящият водач.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer hover:bg-white"><input type="radio" name="q1" value="wrong" class="mr-3 w-4 h-4 accent-amber-600"><span>Този, който се движи направо.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">2. При приближаване на линейка с включен син светлинен и звуков сигнал, водачът трябва:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q2" value="correct" class="mr-3 w-4 h-4"><span>Да освободи пътя и при нужда да спре.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q2" value="wrong" class="mr-3"><span>Да увеличи скоростта, за да не я забавя.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">3. Кой сигнал има най-висок приоритет при регулиране на движението?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q3" value="wrong" class="mr-3"><span>Светофарът.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q3" value="correct" class="mr-3"><span>Регулировчикът.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">4. Трамваят има предимство пред автомобила на равнозначно кръстовище:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q4" value="correct" class="mr-3"><span>Независимо от посоката му на движение (ако са в равностойни условия).</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q4" value="wrong" class="mr-3"><span>Само ако е дясностоящ.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">5. При завой наляво на кръстовище със светофар (зелен сигнал), водачът пропуска:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q5" value="correct" class="mr-3"><span>Насрещно движещите се направо и надясно.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q5" value="wrong" class="mr-3"><span>Никого, щом светофарът е зелен.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">6. Кога водачът е длъжен да пропусне пешеходец на пешеходна пътека?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q6" value="correct" class="mr-3"><span>Винаги, когато пешеходецът е стъпил или навлиза на пътеката.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q6" value="wrong" class="mr-3"><span>Само ако пешеходецът му е направил знак.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">7. При навлизане в кръгово кръстовище без знаци, предимство има:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q7" value="correct" class="mr-3"><span>Дясностоящият (навлизащият в кръстовището).</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q7" value="wrong" class="mr-3"><span>Вече движещият се в кръга.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">8. Автомобил с включени само сини светлини (без сирена) има ли предимство на светофар?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q8" value="wrong" class="mr-3"><span>Да.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q8" value="correct" class="mr-3"><span>Не, трябва и звуков сигнал за специален режим.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">9. При завой в улица, водачът пропуска пешеходците, пресичащи платното:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q9" value="correct" class="mr-3"><span>Да, дори и да няма пешеходна пътека.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q9" value="wrong" class="mr-3"><span>Не, само ако има „зебра“.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">10. Пътният знак "СТОП" (B2) задължава водача:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q10" value="correct" class="mr-3"><span>Да спре напълно и да пропусне превозните средства по пътя с предимство.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q10" value="wrong" class="mr-3"><span>Само да намали скоростта.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">11. При излизане от черен път на асфалтов път, водачът:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q11" value="correct" class="mr-3"><span>Е длъжен да пропусне всички движещи се по асфалтовия път.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q11" value="wrong" class="mr-3"><span>Има предимство, ако е дясностоящ.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">12. На кръстовище, където знаците и светофарите си противоречат, водачът спазва:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q12" value="wrong" class="mr-3"><span>Знаците.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q12" value="correct" class="mr-3"><span>Светофара.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">13. При преминаване покрай спряло МПС със син/червен светлинен сигнал, водачът:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q13" value="correct" class="mr-3"><span>Намалява скоростта и при нужда спира.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q13" value="wrong" class="mr-3"><span>Преминава възможно най-бързо.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">14. Знакът "Път с предимство" (Б3) губи силата си при наличие на:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q14" value="correct" class="mr-3"><span>Работещ светофар или регулировчик.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q14" value="wrong" class="mr-3"><span>Знак за опасен завой.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">15. При излизане от жилищна зона (знак Д12), водачът пропуска:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q15" value="correct" class="mr-3"><span>Всички участници в движението на пътя, на който навлиза.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q15" value="wrong" class="mr-3"><span>Никого, той е с предимство.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">16. Може ли водач да навлезе в кръстовище при зелен сигнал, ако в него има задръстване?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q16" value="wrong" class="mr-3"><span>Да, защото е на зелено.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q16" value="correct" class="mr-3"><span>Не, ако ще остане в него и ще пречи на напречното движение.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">17. Кой преминава пръв на Т-образно кръстовище на равнозначни пътища?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q17" value="correct" class="mr-3"><span>Отново се прилага правилото на десния.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q17" value="wrong" class="mr-3"><span>Този, който се движи направо по „горната“ част на Т.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">18. Когато насрещно движещи се МПС завиват едновременно наляво:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q18" value="correct" class="mr-3"><span>Разминават се отдясно (пред центъра на кръстовището), без да се пресичат.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q18" value="wrong" class="mr-3"><span>Изчакват се взаимно.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">19. Велосипедист, пресичащ по велосипедна пътека, има ли предимство пред автомобил?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q19" value="correct" class="mr-3"><span>Да, на обозначената велосипедна пътека.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q19" value="wrong" class="mr-3"><span>Не, велосипедистите винаги пропускат колите.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-card p-6 rounded-2xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">20. При подаване на сигнал от регулировчик „дясна ръка напред“:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q20" value="correct" class="mr-3"><span>Спрени са тези зад него и отдясно. Преминават тези отляво и отпред.</span></label>
+                        <label class="flex items-center p-4 border rounded-xl cursor-pointer"><input type="radio" name="q20" value="wrong" class="mr-3"><span>Всички спират.</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div id="action-buttons" class="flex flex-col md:flex-row gap-4 pt-10 no-print">
+                <button type="button" onclick="checkResults()" class="flex-[2] bg-amber-600 hover:bg-amber-700 text-white font-black py-4 rounded-2xl shadow-lg transition transform active:scale-95 uppercase">Провери Отговорите</button>
+                <button type="button" id="pdf-btn" onclick="saveAsPDF()" class="hidden flex-1 bg-slate-800 hover:bg-black text-white font-bold py-4 rounded-2xl shadow-lg transition">Запази PDF</button>
+                <button type="button" onclick="window.print()" class="flex-1 bg-white border-2 border-amber-200 text-amber-700 font-bold py-4 rounded-2xl shadow-md transition hover:bg-amber-50">Печат</button>
+            </div>
+        </form>
+
+        <div id="result-message" class="hidden p-10 text-center border-t border-amber-50 bg-amber-50/50"></div>
+    </div>
+
+    <script>
+        let timeLeft = 1200; 
+        const timerElement = document.getElementById('timer');
+
+        const timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                checkResults();
+                timerElement.innerHTML = "ВРЕМЕТО ИЗТЕЧЕ!";
+            } else {
+                timeLeft--;
+                const mins = Math.floor(timeLeft / 60);
+                const secs = timeLeft % 60;
+                timerElement.innerHTML = `Време: ${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+        }, 1000);
+
+        function checkResults() {
+            const questionsCount = 20;
+            let score = 0;
+
+            for (let i = 1; i <= questionsCount; i++) {
+                const radios = document.getElementsByName('q' + i);
+                for (let radio of radios) {
+                    if (radio.checked) {
+                        if (radio.value === 'correct') {
+                            score++;
+                            radio.parentElement.classList.add('bg-emerald-50', 'border-emerald-500', 'ring-1', 'ring-emerald-500');
+                        } else {
+                            radio.parentElement.classList.add('bg-red-50', 'border-red-500', 'ring-1', 'ring-red-500');
+                        }
+                    }
+                    if (radio.value === 'correct' && !radio.checked) {
+                        radio.parentElement.classList.add('border-emerald-300', 'border-dashed');
+                    }
+                    radio.disabled = true;
+                }
+            }
+
+            document.getElementById('score-display').innerHTML = `РЕЗУЛТАТ: ${score} / ${questionsCount}`;
+            const msgBox = document.getElementById('result-message');
+            msgBox.classList.remove('hidden');
+            
+            if (score >= 18) {
+                msgBox.innerHTML = `<h2 class="text-3xl font-black text-emerald-700 mb-2">ПОЗДРАВЛЕНИЯ!</h2><p class="text-slate-600">Отлични познания за правилата на предимство.</p>`;
+            } else if (score >= 15) {
+                msgBox.innerHTML = `<h2 class="text-3xl font-black text-amber-700 mb-2">УСПЕШЕН ТЕСТ!</h2><p class="text-slate-600">Преминавате, но прегледайте грешните ситуации.</p>`;
+            } else {
+                msgBox.innerHTML = `<h2 class="text-3xl font-black text-red-700 mb-2">НЕУСПЕШЕН ИЗПИТ!</h2><p class="text-slate-600">Рисково поведение! Имате нужда от още теория за кръстовищата.</p>`;
+            }
+            
+            document.getElementById('pdf-btn').classList.remove('hidden');
+            clearInterval(timerInterval);
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        function saveAsPDF() {
+            const student = document.getElementById('student-name').value || "Kursist";
+            const opt = {
+                margin: 10,
+                filename: `Izpit_Predimstvo_${student}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            const noPrint = document.querySelectorAll('.no-print');
+            noPrint.forEach(el => el.style.display = 'none');
+            html2pdf().set(opt).from(document.getElementById('exam-content')).save().then(() => {
+                noPrint.forEach(el => el.style.display = '');
+            });
+        }
+    </script>
+</body>
+</html>

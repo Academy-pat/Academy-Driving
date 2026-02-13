@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изпит: Маневри на пътя</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        @media print { .no-print { display: none; } body { background: white; } }
+        .question-card { transition: all 0.2s; border: 1px solid #e5e7eb; }
+        .question-card:hover { border-color: #8b5cf6; background-color: #f5f3ff; }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen font-sans p-4 md:p-8">
+
+    <div id="exam-content" class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-indigo-900 p-8 text-white">
+            <h1 class="text-3xl font-black uppercase tracking-tighter">Изпитен Протокол №3</h1>
+            <p class="text-indigo-300 mt-1 uppercase text-sm font-bold">Тема: Маневри (Завиване, Изпреварване, Паркиране)</p>
+            
+            <div class="flex flex-wrap justify-between mt-8 gap-4 no-print">
+                <div id="timer" class="bg-orange-500/20 border border-orange-500 text-orange-100 px-6 py-2 rounded-full font-mono text-lg italic">Време: 20:00</div>
+                <div id="score-display" class="bg-indigo-500 text-white px-6 py-2 rounded-full font-black text-lg tracking-widest">РЕЗУЛТАТ: - / 20</div>
+            </div>
+        </div>
+
+        <form id="quiz-form" class="p-8 space-y-10">
+            <!-- Student Header -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-slate-100 pb-8">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Име на кандидат-водача</label>
+                    <input type="text" id="student-name" placeholder="Въведете имената тук..." class="w-full text-xl font-medium border-b-2 border-slate-200 py-2 focus:border-indigo-600 outline-none transition-colors">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Дата на изпита</label>
+                    <input type="date" id="exam-date" class="w-full text-xl font-medium border-b-2 border-slate-200 py-2 focus:border-indigo-600 outline-none transition-colors">
+                </div>
+            </div>
+
+            <!-- Questions Container -->
+            <div class="space-y-6">
+                <!-- Q1 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">1. Преди да започне маневра, водачът е длъжен да:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q1" value="correct" class="mr-3"><span>Се убеди, че няма да застраши останалите участници и да подаде сигнал.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q1" value="wrong" class="mr-3"><span>Подаде сигнал само ако зад него има друг автомобил.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <label class="hidden">2</label>
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">2. От коя страна се извършва изпреварването по правило?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q2" value="wrong" class="mr-3"><span>Отдясно.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q2" value="correct" class="mr-3"><span>Отляво.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">3. Разрешено ли е изпреварването на кръстовище на равнозначни пътища?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q3" value="wrong" class="mr-3"><span>Да.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q3" value="correct" class="mr-3"><span>Не.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">4. Къде е забранено извършването на обратен завой?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q4" value="correct" class="mr-3"><span>На пешеходни пътеки, мостове, в тунели и при ограничена видимост.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q4" value="wrong" class="mr-3"><span>На всяко кръстовище в населено място.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">5. При движение на заден ход, водачът е длъжен да:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q5" value="correct" class="mr-3"><span>Се убеди, че пътят зад него е свободен и, ако е необходимо, да ползва помощта на друго лице.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q5" value="wrong" class="mr-3"><span>Да се движи с максимална скорост, за да освободи по-бързо пътя.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">6. Разрешено ли е изпреварването на железопътен прелез без бариери?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q6" value="wrong" class="mr-3"><span>Да, ако няма приближаващ влак.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q6" value="correct" class="mr-3"><span>Не, изпреварването е забранено.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">7. При завиване надясно, водачът трябва да заеме позиция:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q7" value="correct" class="mr-3"><span>Възможно най-вдясно по платното за движение.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q7" value="wrong" class="mr-3"><span>В средата на платното.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">8. Кога се преустановява подаването на светлинен сигнал при маневра?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q8" value="correct" class="mr-3"><span>Веднага след приключване на маневрата.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q8" value="wrong" class="mr-3"><span>50 метра след приключване на маневрата.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">9. При изпреварване, водачът на изпреварваното превозно средство е длъжен:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q9" value="correct" class="mr-3"><span>Да не увеличава скоростта и да не пречи на изпреварването.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q9" value="wrong" class="mr-3"><span>Да спре незабавно вдясно.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">10. Разрешен ли е престоят и паркирането на места за хора с увреждания?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q10" value="wrong" class="mr-3"><span>Да, за кратко време до 5 минути.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q10" value="correct" class="mr-3"><span>Само от лица, притежаващи съответната карта.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q11 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">11. Когато трамвайни релси са разположени в средата на платното, заобикалянето на трамвай се извършва:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q11" value="correct" class="mr-3"><span>Отдясно по посока на движението му.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q11" value="wrong" class="mr-3"><span>Отляво.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q12 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">12. На какво разстояние от пешеходна пътека е забранено паркирането?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q12" value="wrong" class="mr-3"><span>Минимум 2 метра.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q12" value="correct" class="mr-3"><span>Минимум 5 метра преди нея.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q13 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">13. При маневра "Заобикаляне" на препятствие, водачът е длъжен:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q13" value="correct" class="mr-3"><span>Да пропусне насрещно движещите се, ако платното е стеснено.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q13" value="wrong" class="mr-3"><span>Да премине първи с предимство.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q14 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">14. Позволено ли е изпреварването на колона от автомобили?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q14" value="correct" class="mr-3"><span>Да, ако има достатъчно разстояние и видимост.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q14" value="wrong" class="mr-3"><span>Категорично не.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q15 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">15. При повреда на светлинните сигнали, как се указва завой наляво с ръка?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q15" value="correct" class="mr-3"><span>Лявата ръка е изпъната хоризонтално встрани.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q15" value="wrong" class="mr-3"><span>Дясната ръка е изпъната нагоре.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q16 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">16. Разрешен ли е престоят на мостове и подлези?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q16" value="wrong" class="mr-3"><span>Да, за слизане на пътници.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q16" value="correct" class="mr-3"><span>Не, забранено е.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q17 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">17. При престрояване от една лента в друга, предимство има:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q17" value="correct" class="mr-3"><span>Водачът, който се движи в лентата, в която ще се навлиза.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q17" value="wrong" class="mr-3"><span>Водачът, който подаде сигнал първи.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q18 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">18. Кога е разрешено паркирането на тротоара?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q18" value="correct" class="mr-3"><span>Само на места, обозначени с пътен знак и ако остават 2м за пешеходци.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q18" value="wrong" class="mr-3"><span>Винаги, когато няма място на пътното платно.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q19 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">19. При "Завой наляво", водачът е длъжен да пропусне:</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q19" value="correct" class="mr-3"><span>Насрещно движещите се и завиващите надясно.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q19" value="wrong" class="mr-3"><span>Никого, той е с предимство.</span></label>
+                    </div>
+                </div>
+
+                <!-- Q20 -->
+                <div class="question-card p-6 rounded-xl">
+                    <p class="font-bold text-slate-800 text-lg mb-4">20. Разрешено ли е изпреварването на автомобил, който вече е подал сигнал за изпреварване?</p>
+                    <div class="grid gap-3">
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q20" value="wrong" class="mr-3"><span>Да, ако нашият автомобил е по-бърз.</span></label>
+                        <label class="flex items-center p-4 border rounded-lg cursor-pointer"><input type="radio" name="q20" value="correct" class="mr-3"><span>Не, изчаква се завършването на неговата маневра.</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div id="action-buttons" class="flex flex-col md:flex-row gap-4 pt-10 no-print">
+                <button type="button" onclick="checkResults()" class="flex-[2] bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-xl shadow-lg transition transform active:scale-95 uppercase tracking-wider">Провери Теста</button>
+                <button type="button" id="pdf-btn" onclick="saveAsPDF()" class="hidden flex-1 bg-slate-700 hover:bg-slate-800 text-white font-bold py-4 rounded-xl shadow-lg transition">PDF Отчет</button>
+                <button type="button" onclick="window.print()" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-4 rounded-xl shadow-md transition">Печат</button>
+            </div>
+        </form>
+
+        <div id="result-message" class="hidden p-10 text-center border-t border-slate-100 bg-indigo-50"></div>
+    </div>
+
+    <script>
+        let timeLeft = 1200; 
+        const timerElement = document.getElementById('timer');
+
+        const timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                checkResults();
+                timerElement.innerHTML = "ВРЕМЕТО ИЗТЕЧЕ!";
+                timerElement.classList.add('bg-red-600', 'text-white');
+            } else {
+                timeLeft--;
+                const mins = Math.floor(timeLeft / 60);
+                const secs = timeLeft % 60;
+                timerElement.innerHTML = `Оставащо време: ${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+        }, 1000);
+
+        function checkResults() {
+            const questionsCount = 20;
+            let score = 0;
+
+            for (let i = 1; i <= questionsCount; i++) {
+                const radios = document.getElementsByName('q' + i);
+                for (let radio of radios) {
+                    if (radio.checked) {
+                        if (radio.value === 'correct') {
+                            score++;
+                            radio.parentElement.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-700');
+                        } else {
+                            radio.parentElement.classList.add('bg-red-50', 'border-red-500', 'text-red-700');
+                        }
+                    }
+                    // Show correct answer if wrong was selected
+                    if (radio.value === 'correct' && !radio.checked) {
+                         radio.parentElement.classList.add('border-emerald-300', 'border-dashed');
+                    }
+                    radio.disabled = true;
+                }
+            }
+
+            document.getElementById('score-display').innerHTML = `РЕЗУЛТАТ: ${score} / ${questionsCount}`;
+            const msgBox = document.getElementById('result-message');
+            msgBox.classList.remove('hidden');
+            
+            if (score >= 18) {
+                msgBox.innerHTML = `<h2 class="text-3xl font-black text-emerald-600 mb-2">ОТЛИЧЕН!</h2><p class="text-slate-600 italic">Вие познавате маневрите на пътя перфектно.</p>`;
+            } else if (score >= 15) {
+                msgBox.innerHTML = `<h2 class="text-3xl font-black text-indigo-600 mb-2">УСПЕШЕН ИЗПИТ!</h2><p class="text-slate-600">Добър резултат, но обърнете внимание на грешките.</p>`;
+            } else {
+                msgBox.innerHTML = `<h2 class="text-3xl font-black text-red-600 mb-2">НЕУСПЕШЕН!</h2><p class="text-slate-600">Прочетете отново раздела за Маневри в ЗДвП.</p>`;
+            }
+            
+            document.getElementById('pdf-btn').classList.remove('hidden');
+            clearInterval(timerInterval);
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        function saveAsPDF() {
+            const student = document.getElementById('student-name').value || "Kursist";
+            const opt = {
+                margin: 10,
+                filename: `Izpit_Manevri_${student}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            const noPrint = document.querySelectorAll('.no-print');
+            noPrint.forEach(el => el.style.display = 'none');
+            html2pdf().set(opt).from(document.getElementById('exam-content')).save().then(() => {
+                noPrint.forEach(el => el.style.display = '');
+            });
+        }
+    </script>
+</body>
+</html>
